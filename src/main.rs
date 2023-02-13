@@ -49,15 +49,15 @@ fn main() {
 }
 
 fn isrtl(line: &str) -> Status {
-    if line.contains(" r") {
+    if line.contains(" r l") {
+        let newign = line.replace(" r l", "");
+        Status::new(newign, true, true, false)
+    } else if line.contains(" r") {
         let newign = line.replace(" r", "");
         Status::new(newign, true, false, false)
     } else if line.contains(" l") {
         let newign = line.replace(" l", "");
         Status::new(newign, false, true, false)
-    } else if line.contains(" r l") {
-        let newign = line.replace(" r l", "");
-        Status::new(newign, true, true, false)
     } else {
         Status::new(line.to_string(), false, false, true)
     }
