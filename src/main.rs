@@ -5,16 +5,16 @@ struct Status {
     ign: String,
     ranked: bool,
     logins: bool,
-    rien: bool,
+    ready: bool,
 }
 
 impl Status {
-    fn new(ign: String, ranked: bool, logins: bool, rien: bool) -> Status {
+    fn new(ign: String, ranked: bool, logins: bool, ready: bool) -> Status {
         Status {
             ign,
             ranked,
             logins,
-            rien,
+            ready,
         }
     }
 }
@@ -26,7 +26,25 @@ fn main() {
         v.push(isrtl(lines))
     }
     for igns in v {
-        println!("{:?}", igns)
+        println!(
+            "{}: {}, {} {}",
+            igns.ign,
+            if igns.ranked {
+                "\x1b[31mRanked\x1b[0m"
+            } else {
+                "\x1b[32mRanked\x1b[0m"
+            },
+            if igns.logins {
+                "\x1b[31mLogins\x1b[0m"
+            } else {
+                "\x1b[32mLogins\x1b[0m"
+            },
+            if igns.ready {
+                "\x1b[32m✅\x1b[0m"
+            } else {
+                "\x1b[31m❌\x1b[0m"
+            }
+        )
     }
 }
 
