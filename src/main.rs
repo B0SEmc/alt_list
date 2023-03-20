@@ -1,6 +1,5 @@
 use std::fs;
 
-#[derive(Debug)]
 struct Status {
     ign: String,
     ranked: bool,
