@@ -8,11 +8,7 @@ struct Status {
 
 impl Status {
     fn new(ign: String, ranked: bool, ready: bool) -> Status {
-        Status {
-            ign,
-            ranked,
-            ready,
-        }
+        Status { ign, ranked, ready }
     }
 }
 
@@ -45,7 +41,7 @@ fn main() {
 
 fn is_rtl(line: &str) -> Status {
     if line.contains(" r") {
-        let newign = line.replace(" r l", "");
+        let newign = line.replace(" r", "");
         Status::new(newign, true, false)
     } else {
         Status::new(line.to_string(), true, true)
