@@ -44,9 +44,11 @@ fn main() {
             match ign {
                 Some(ign) => {
                     let mut list = fs::read_to_string("list.txt").expect("alt list couldn't be found.");
-                    // remove empty lines from the list
+                    // remove empty lines from the list (windows)
+                    list = list.replace("\r\n\r\n", "\r\n");
+                    // remove empty lines from the list (linux)
                     list = list.replace("\n\n", "\n");
-                    list.push_str(&format!("\n{} r", ign.trim()));
+                    list.push_str(&format!("{} r\n", ign.trim()));
                     fs::write("list.txt", list).expect("Unable to write file");
                     // if successful, print this: ign in red and "added to list" in green
                     println!("{} {}",  ign.red(), "added to list".green());
@@ -65,9 +67,13 @@ fn main() {
                         return;
                     }
                     // remove the ign from the list
-                    list = list.replace(&format!("{} r\n", ign.trim()), "");
+                    list = list.replace(&format!("{} r", ign.trim()), "");
+                    // remove (windows)
+                    list = list.replace(&format!("{} r\r\n", ign.trim()), "");
                     // also remove the empty line
                     list = list.replace("\n\n", "\n");
+                    // also remove the empty line (windows)
+                    list = list.replace("\r\n\r\n", "\r\n");
                     fs::write("list.txt", list).expect("Unable to write file");
                     // if successful, print this: ign in blue and "removed from list" in green
                     println!("{} {}", ign.cyan(), "removed from list".green());
