@@ -1,6 +1,6 @@
 [package]
 name = "alt_list"
-version = "1.0.3"
+version = "1.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 clap = { version = "*", features = ["derive"] }
 colored = "*"
+arboard = "*"
